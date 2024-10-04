@@ -1,0 +1,5 @@
+requests
+colorlog
+fake-useragent
+python-telegram-bot
+urllib3

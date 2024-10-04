@@ -1,0 +1,13 @@
+{
+  "telegram_bot_token": "",
+  "telegram_chat_id": "",
+  "use_telegram": false,
+  "use_proxy": true,
+  "poll_interval": 120,
+  "accounts": [
+    {
+      "email": "YOUR DAWN VALIDATOR EMAIL",
+      "token": "YOUR BEARER TOKEN"
+    }
+  ]
+}
