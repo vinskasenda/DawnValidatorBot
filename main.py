@@ -98,12 +98,19 @@ def check_proxy(proxy):
     return False
 
 def get_active_proxies():
-    """Check all proxies and return a list of active proxies."""
+    """Check all proxies and return a list of active proxies using multithreading."""
     proxies = read_proxies(PROXY_FILE)
     active_proxies = []
-    for proxy in proxies:
-        if check_proxy(proxy):
-            active_proxies.append(proxy)
+
+    # Create a ThreadPoolExecutor to run proxy checks concurrently
+    with ThreadPoolExecutor(max_workers=20) as executor:  # You can adjust max_workers to control the level of concurrency
+        futures = [executor.submit(check_proxy, proxy) for proxy in proxies]
+        
+        # Collect results as they complete
+        for future, proxy in zip(futures, proxies):
+            if future.result():
+                active_proxies.append(proxy)
+
     if active_proxies:
         logging.success(f"Found {len(active_proxies)} active proxies.")
         return active_proxies
@@ -260,4 +267,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
