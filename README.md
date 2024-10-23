@@ -23,11 +23,7 @@
     ```
     pip install -r requirements.txt
     ```
-4.  Fill Your Data
-    ```
-    nano data.txt
-    ```
-5.  Fill Email and Bearer Token
+4.  Fill Email and Bearer Token
     ```
     nano config.json
     ```
